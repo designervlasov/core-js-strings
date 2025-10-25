@@ -153,7 +153,11 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value, '');
+  if (str.indexOf(value) === -1) {
+    return str;
+  }
+  const newStr = str.slice(0, str.indexOf(value));
+  return newStr + str.slice(str.indexOf(value) + value.length, str.length);
 }
 
 /**
@@ -169,9 +173,11 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  const newStr = str.split('').reverse().join('');
-  const newValue = value.split('').reverse().join('');
-  return newStr.replace(newValue, '').split('').reverse().join('');
+  if (str.lastIndexOf(value) === -1) {
+    return str;
+  }
+  const newStr = str.slice(0, str.lastIndexOf(value));
+  return newStr + str.slice(str.lastIndexOf(value) + value.length, str.length);
 }
 
 /**
