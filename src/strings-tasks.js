@@ -277,8 +277,8 @@ function reverseString(str) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  return str.split('').sort().join('');
 }
 
 /**
@@ -293,8 +293,8 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  return str.includes(substring);
 }
 
 /**
@@ -311,8 +311,14 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = /[aeiouy]/gi;
+  const found = String(str.match(vowels));
+  if (found === 'null') {
+    return 0;
+  }
+  const result = found.replace(/\W/g, '');
+  return result.length;
 }
 
 /**
@@ -328,8 +334,10 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const word = str.toLowerCase().trim().replace(/\W/g, '');
+  const palindrome = word.split('').reverse().join('');
+  return word === palindrome;
 }
 
 /**
@@ -344,8 +352,16 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const obj = sentence.split(' ');
+  let longestWord = '';
+  for (let i = 0; i < obj.length; i += 1) {
+    const findWord = String(obj[i]);
+    if (longestWord.length < findWord.length) {
+      longestWord = obj[i];
+    }
+  }
+  return longestWord;
 }
 
 /**
