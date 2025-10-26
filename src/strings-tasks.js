@@ -486,8 +486,20 @@ function extractEmails(str) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/*str*/) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const alphabetCode = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  let result = '';
+  for (let i = 0; i < str.length; i += 1) {
+    const symbol = str[i];
+    const index = alphabet.indexOf(symbol);
+    if (index !== -1) {
+      result += alphabetCode[index];
+    } else {
+      result += symbol;
+    }
+  }
+  return result;
 }
 
 /**
@@ -514,8 +526,26 @@ function encodeToRot13(/*str*/) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const rank = [
+    'A',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    'J',
+    'Q',
+    'K',
+  ];
+  const suits = ['♣', '♦', '♥', '♠'];
+  const indexSuits = suits.indexOf(value[value.length - 1]) * 13;
+  const indexValue = rank.indexOf(value.slice(0, -1));
+  return indexSuits + indexValue;
 }
 
 module.exports = {
